@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-time Stock Price Monitor</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📈 Real-time Stock Monitor</h1>
+            <p>Track your favorite stocks with live price updates and advanced analytics</p>
+        </div>
+
+        <div class="controls">
+            <div class="control-group">
+                <input type="text" id="stockInput" class="stock-input" placeholder="Enter stock symbol (e.g., AAPL)">
+                <button id="addStockBtn" class="btn btn-start">➕ Add Stock</button>
+            </div>
+            <div class="control-group">
+                <button id="startBtn" class="btn btn-start">▶️ Start Monitoring</button>
+                <button id="stopBtn" class="btn btn-stop" disabled>⏹️ Stop Monitoring</button>
+            </div>
+            <div class="status">
+                <div id="statusIndicator" class="status-indicator status-stopped"></div>
+                <span id="statusText">Stopped</span>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="market-summary">
+                <h2>📊 Market Overview</h2>
+                <div class="market-stats">
+                    <div class="market-stat">
+                        <div class="market-stat-value" id="totalStocks">0</div>
+                        <div class="market-stat-label">Stocks Tracked</div>
+                    </div>
+                    <div class="market-stat">
+                        <div class="market-stat-value" id="avgChange">0.00%</div>
+                        <div class="market-stat-label">Average Change</div>
+                    </div>
+                    <div class="market-stat">
+                        <div class="market-stat-value" id="gainersCount">0</div>
+                        <div class="market-stat-label">Gainers</div>
+                    </div>
+                    <div class="market-stat">
+                        <div class="market-stat-value" id="losersCount">0</div>
+                        <div class="market-stat-label">Losers</div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="stocksGrid" class="stocks-grid">
+                <div class="loading">Add some stocks to get started...</div>
+            </div>
+
+            <div class="chart-section">
+                <div class="chart-header">
+                    <h2 class="chart-title">📈 Price History</h2>
+                    <div class="chart-controls">
+                        <button class="chart-btn active" data-period="1h">1H</button>
+                        <button class="chart-btn" data-period="1d">1D</button>
+                        <button class="chart-btn" data-period="1w">1W</button>
+                        <button class="chart-btn" data-period="1m">1M</button>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="priceChart"></canvas>
+                </div>
+            </div>
+
+            <div class="alerts-panel">
+                <div class="alerts-header">
+                    <h2>🚨 Alerts & Notifications</h2>
+                    <button class="btn" id="clearAlertsBtn" style="padding: 8px 16px; font-size: 0.9rem;">Clear All</button>
+                </div>
+                <div id="alertsContainer">
+                    <div class="loading">No alerts yet...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="notification" class="notification"></div>
+
+    <script src="index.js"></script>
+</body>
+</html>
